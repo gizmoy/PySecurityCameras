@@ -1,0 +1,41 @@
+import copy
+import math
+from domain import check_point
+
+
+class Box:
+    def __init__(self, vertex, width, height, distance):
+        self.vertex = vertex
+        self.width = width
+        self.height = height
+        self.check_points = []
+
+    def generate_check_points(self, distance):
+        # count number of check points on both axes
+        num_check_points_on_x = int(math.floor(self.width / distance + 1e-10))
+        num_check_points_on_y = int(math.floor(self.height / distance + 1e-10))
+        # biases for centering check points on both axes
+        x_bias = (self.width - (num_check_points_on_x - 1) * distance) / 2
+        y_bias = (self.height - (num_check_points_on_y - 1) * distance) / 2
+        # generate check points
+        for i in xrange(num_check_points_on_x):
+            for j in xrange(num_check_points_on_y):
+                x = self.vertex.x + i * distance + x_bias
+                y = self.vertex.y + j * distance + y_bias
+                point = check_point.CheckPoint(x, y)
+                self.check_points.append(point)
+
+    def get_vertex(self, key):
+        vertex = copy.copy(self.vertex)
+        if key == 'bottom_left':
+            pass
+        elif key == 'bottom_right':
+            vertex.x + self.width
+        elif key == 'upper_left':
+            vertex.y + self.height
+        elif key == 'upper_right':
+            vertex.x + self.width
+            vertex.y + self.height
+        else:
+            vertex = None
+        return vertex

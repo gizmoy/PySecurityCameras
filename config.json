@@ -1,0 +1,33 @@
+{
+  "boxes": [
+    {
+      "vertex": {
+        "x": 0.7,
+        "y": 0.5
+      },
+      "width": 0.3,
+      "height": 0.2
+    },
+    {
+      "vertex": {
+        "x": 0.28,
+        "y": 0.3
+      },
+      "width": 0.42,
+      "height": 0.5
+    },
+    {
+      "vertex": {
+        "x": 0.2,
+        "y": 0.3
+      },
+      "width": 0.08,
+      "height": 0.15
+    }
+  ],
+  "camera_range": 0.08,
+  "max_cameras": 30,
+  "num_iterations": 10000,
+  "distance": 0.03,
+  "temperature": 0.95
+}
