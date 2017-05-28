@@ -30,6 +30,5 @@
   "max_iterations": 100,
   "distance": 0.03,
   "temperature": 0.95,
-  "sigma": 0.03,
-  "box_change_prob": 0.1
+  "sigma": 0.03
 }

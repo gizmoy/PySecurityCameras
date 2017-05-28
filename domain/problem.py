@@ -4,7 +4,6 @@ from domain import point, box
 class Problem:
     def __init__(self, config):
         # save all config values
-        self.box_change_prob = config['box_change_prob']
         self.camera_range = config['camera_range']
         self.max_cameras = config['max_cameras']
         self.distance = config['distance']

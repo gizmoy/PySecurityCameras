@@ -4,20 +4,14 @@ from visualization import visualizator
 
 class SimulatedAnnealing:
     def __init__(self, config, problem):
-        self.log = []
         self.problem = problem
         self.temperature = config['temperature']
         self.max_iterations = config['max_iterations']
-        self.generate_initial_state()
-
-    def generate_initial_state(self):
-        st = state.State(self.problem)
-        st.generate_cameras(self.problem.boxes, self.problem.max_cameras)
-        self.log.append(st)
+        self.initial_state = state.State(self.problem)
 
     def perform(self):
         # get last state from log and init values
-        x = self.log[-1]
+        x = self.initial_state
         iteration = 1
 
         visualizator.Visualizator.plot(self.problem, x, 0)

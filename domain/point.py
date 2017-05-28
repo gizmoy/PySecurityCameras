@@ -8,3 +8,11 @@ class Point:
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
+
+    def is_in_box(self, problem):
+        for box in problem.boxes:
+            v = box.vertex
+            if (v.x <= self.x <= v.x + box.width and
+                v.y <= self.y <= v.y + box.height):
+                return True
+        return False
