@@ -10,6 +10,13 @@ class Box:
         self.height = height
         self.check_points = []
 
+    def __str__(self):
+        return 'Box: {bottom left vertex: (%s), width: %f, height: %f}' % (str(self.vertex), self.width, self.height)
+
+    def __eq__(self, other):
+        return self.vertex == other.vertex and self.height == other.height and self.height == other.height
+
+
     def generate_check_points(self, distance):
         # count number of check points on both axes
         num_check_points_on_x = int(math.floor(self.width / distance + 1e-10))

@@ -7,7 +7,7 @@ class Visualizator:
         pass
 
     @staticmethod
-    def plot(problem, state):
+    def plot(problem, state, iteration):
         fig = plt.figure(figsize=(40, 40))
         ax = fig.add_subplot(121, aspect='equal')
         # draw boxes
@@ -29,4 +29,4 @@ class Visualizator:
             circle = plt.Circle((camera.pos.x, camera.pos.y), problem.camera_range, color='b', fill=False)
             ax.add_artist(circle)
         # save figure
-        fig.savefig('state.png', dpi=180, bbox_inches='tight')
+        fig.savefig('state' + str(iteration) + '.png', dpi=180, bbox_inches='tight')

@@ -25,9 +25,4 @@ if __name__ == '__main__':
     # define problem and perform algorithm
     problem = problem.Problem(config)
     algorithm = simulated_annealing.SimulatedAnnealing(config, problem)
-    algorithm.generate_initial_state()
     algorithm.perform()
-
-    visualizator.Visualizator.plot(problem, algorithm.log.pop())
-
-

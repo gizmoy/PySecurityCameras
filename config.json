@@ -26,8 +26,10 @@
     }
   ],
   "camera_range": 0.08,
-  "max_cameras": 30,
-  "num_iterations": 10000,
+  "max_cameras": 10,
+  "max_iterations": 100,
   "distance": 0.03,
-  "temperature": 0.95
+  "temperature": 0.95,
+  "sigma": 0.03,
+  "box_change_prob": 0.1
 }
