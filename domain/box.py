@@ -1,10 +1,10 @@
 import copy
 import math
-from domain import check_point
+from domain import check_point as CheckPoint, line as Line
 
 
 class Box:
-    def __init__(self, vertex, width, height, distance):
+    def __init__(self, vertex, width, height):
         self.vertex = vertex
         self.width = width
         self.height = height
@@ -28,7 +28,7 @@ class Box:
             for j in xrange(num_check_points_on_y):
                 x = self.vertex.x + i * distance + x_bias
                 y = self.vertex.y + j * distance + y_bias
-                point = check_point.CheckPoint(x, y)
+                point = CheckPoint.CheckPoint(x, y, self)
                 self.check_points.append(point)
 
     def get_vertex(self, key):
@@ -45,3 +45,23 @@ class Box:
         else:
             vertex = None
         return vertex
+
+    def get_sides(self):
+        return [
+            Line.Line( # left side of box
+                self.get_vertex('bottom_left'),
+                self.get_vertex('upper_left')
+            ),
+            Line.Line( # bottom side of box
+                self.get_vertex('bottom_left'),
+                self.get_vertex('bottom_right')
+            ),
+            Line.Line(  # upper side of box
+                self.get_vertex('upper_left'),
+                self.get_vertex('upper_right')
+            ),
+            Line.Line(  # right side of box
+                self.get_vertex('bottom_right'),
+                self.get_vertex('upper_right')
+            )
+        ]

@@ -25,10 +25,14 @@
       "height": 0.15
     }
   ],
-  "camera_range": 0.08,
-  "max_cameras": 10,
-  "max_iterations": 100,
+  "camera_range": 0.1,
+  "max_cameras": 20,
+  "max_iterations": 50,
   "distance": 0.03,
-  "temperature": 0.95,
-  "sigma": 0.03
+  "temperature": 0.05,
+  "sigma": 0.03,
+  "alpha": 1.0,
+  "beta": 1.0,
+  "h_exp": 1.0,
+  "n_exp": 2.5
 }

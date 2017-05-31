@@ -1,5 +1,6 @@
+import random
+import math
 from domain import state
-from visualization import visualizator
 
 
 class SimulatedAnnealing:
@@ -8,19 +9,28 @@ class SimulatedAnnealing:
         self.temperature = config['temperature']
         self.max_iterations = config['max_iterations']
         self.initial_state = state.State(self.problem)
+        self.outcome = None
 
     def perform(self):
-        # get last state from log and init values
+        # get initial state and set initial values
         x = self.initial_state
+        t = self.temperature
         iteration = 1
-
-        visualizator.Visualizator.plot(self.problem, x, 0)
         # perform simulated annealing
         while iteration < self.max_iterations:
             print 'iteration %d and only %d to go' % (iteration, self.max_iterations - iteration)
+            # generate y as neighbour of x and count their qualities
             y = x.generate_neighbour()
-            visualizator.Visualizator.plot(self.problem, y, iteration)
-            x = y
+            x_cost = self.problem.get_state_cost(x)
+            y_cost = self.problem.get_state_cost(y)
+            print 'c_x: %f, c_y: %f' % (x_cost, y_cost)
+            # count threshold and update x if cost of y > or random number < threshold (minimisation)
+            threshold = math.exp(-math.fabs(y_cost - x_cost) / t) if t > 0 else 0
+            if x_cost > y_cost or random.random() < threshold:
+                x = y
+            print 'c_selected: %f' % x_cost
+            # update iteration counter
             iteration += 1
-
+        # save outcome
+        self.outcome = x
 
