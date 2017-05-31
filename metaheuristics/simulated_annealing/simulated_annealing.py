@@ -24,7 +24,7 @@ class SimulatedAnnealing:
             x_cost = self.problem.get_state_cost(x)
             y_cost = self.problem.get_state_cost(y)
             print 'c_x: %f, c_y: %f' % (x_cost, y_cost)
-            # count threshold and update x if cost of y > or random number < threshold (minimisation)
+            # compute threshold and update x if y's cost < x's cost (minimisation) or random number < threshold
             threshold = math.exp(-math.fabs(y_cost - x_cost) / t) if t > 0 else 0
             if x_cost > y_cost or random.random() < threshold:
                 x = y

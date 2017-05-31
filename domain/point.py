@@ -3,11 +3,12 @@ class Point:
         self.x = x
         self.y = y
 
-    def __str__(self):
-        return 'Point: {x: %f, y: %f}' % (self.x, self.y)
-
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
+        if type(other) is type(self):
+            return self.__dict__ == other.__dict__
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     def is_in_box(self, problem):
         for box in problem.boxes:

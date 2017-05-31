@@ -20,10 +20,10 @@ class Visualizator:
             x_coords = []
             y_coords = []
             colors = []
-            for check_point in box.check_points:
-                x_coords.append(check_point.x)
-                y_coords.append(check_point.y)
-                colors.append('g' if check_point.is_observed else 'r')
+            for point in box.checkpoints:
+                x_coords.append(point.x)
+                y_coords.append(point.y)
+                colors.append('g' if point.is_observed else 'r')
             plt.scatter(x_coords, y_coords, s=10, c=colors)
         # draw cameras
         for camera in state.cameras:
