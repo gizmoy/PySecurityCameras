@@ -15,18 +15,10 @@
       },
       "width": 0.42,
       "height": 0.5
-    },
-    {
-      "vertex": {
-        "x": 0.2,
-        "y": 0.3
-      },
-      "width": 0.08,
-      "height": 0.15
     }
   ],
-  "camera_range": 0.2,
-  "max_cameras": 10,
+  "camera_range": 0.15,
+  "max_cameras": 2,
   "max_iterations": 50,
   "distance": 0.05,
   "temperature": 0.1,

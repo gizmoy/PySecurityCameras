@@ -1,6 +1,7 @@
 import random
 import math
 from domain import state
+from visualization import visualizator as Visualizator
 
 
 class SimulatedAnnealing:
@@ -22,7 +23,15 @@ class SimulatedAnnealing:
             # generate y as neighbour of x and count their qualities
             y = x.generate_neighbour()
             x_cost = self.problem.get_state_cost(x)
+            # visualize
+            Visualizator.Visualizator.plot(self.problem, x, iteration, 'x')
+            # stop observing for next counting
+            self.problem.stop_observing()
             y_cost = self.problem.get_state_cost(y)
+            # visualize
+            Visualizator.Visualizator.plot(self.problem, y, iteration, 'y')
+            # stop observing for next counting
+            self.problem.stop_observing()
             print 'c_x: %f, c_y: %f' % (x_cost, y_cost)
             # compute threshold and update x if y's cost < x's cost (minimisation) or random number < threshold
             threshold = math.exp(-math.fabs(y_cost - x_cost) / t) if t > 0 else 0

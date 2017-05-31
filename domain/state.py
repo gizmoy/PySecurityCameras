@@ -23,7 +23,7 @@ class State:
 
     def generate_neighbour(self):
         # clone cameras
-        cameras = copy.copy(self.cameras)
+        cameras = [copy.copy(c) for c in self.cameras]
         num_cameras = len(cameras)
         # choose mutation type
         if num_cameras == self.problem.max_cameras:
@@ -32,15 +32,26 @@ class State:
             mutation_type = random.choice(['insert', 'modify'])
         else:
             mutation_type = random.choice(['insert', 'remove', 'modify'])
+        print 'Mutation type: ' + mutation_type
         # perform mutation depending on selected type
         if mutation_type == 'insert':
             # insert new camera
+            print 'Choices:'
+            for b in self.problem.boxes:
+                print '{x: ' + str(b.vertex.x) + ', y: ' + str(b.vertex.y) + '}'
             box = random.choice(self.problem.boxes)
+            print 'Selected box: {x: ' + str(box.vertex.x) + ', y: ' + str(box.vertex.y) + '}'
             new_camera = camera.Camera(self.problem, box)
             cameras.append(new_camera)
         elif mutation_type == 'remove':
             # remove random camera
+            print 'Choices:'
+            for c in cameras:
+                print '{x: ' + str(c.pos.x) + ', y: ' + str(c.pos.y) + '}'
+            box = random.choice(self.problem.boxes)
             cam = random.choice(cameras)
+
+            print 'Selected camera: {x: ' + str(cam.pos.x) + ', y: ' + str(cam.pos.y) + '}'
             cameras.remove(cam)
         else:
             # modify position of all cameras

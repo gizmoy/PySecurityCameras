@@ -50,9 +50,9 @@ class Problem:
                         point.is_observed = True
                         count -= 1
         # visualize
-        Visualizator.Visualizator.plot(self, state)
-        # stop observing for next iteration
-        self.stop_observing()
+        # Visualizator.Visualizator.plot(self, state)
+        # stop observing for next counting
+        # self.stop_observing()
         return count
 
     def stop_observing(self):
