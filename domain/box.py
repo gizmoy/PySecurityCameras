@@ -1,6 +1,8 @@
 import copy
 import math
-from domain import point as Point, check_point as CheckPoint, segment as Segment
+from point import Point
+from check_point import Checkpoint
+from segment import Segment
 
 
 class Box:
@@ -22,7 +24,7 @@ class Box:
             for j in xrange(num_check_points_on_y):
                 x = self.vertex.x + i * distance + x_bias
                 y = self.vertex.y + j * distance + y_bias
-                point = CheckPoint.CheckPoint(x, y, self)
+                point = Checkpoint(x, y, self)
                 self.checkpoints.append(point)
 
     def get_vertex(self, key):
@@ -31,14 +33,14 @@ class Box:
         w = self.width
         h = self.height
         # create a particular vertex
-        if key == 'bottom_left':
-            vertex = Point.Point(v.x, v.y)
-        elif key == 'upper_left':
-            vertex = Point.Point(v.x, v.y + h)
-        elif key == 'bottom_right':
-            vertex = Point.Point(v.x + w, v.y)
-        elif key == 'upper_right':
-            vertex = Point.Point(v.x + w, v.y + h)
+        if key == 'bo_lf':
+            vertex = Point(v.x, v.y)
+        elif key == 'up_lf':
+            vertex = Point(v.x, v.y + h)
+        elif key == 'bo_rt':
+            vertex = Point(v.x + w, v.y)
+        elif key == 'up_rt':
+            vertex = Point(v.x + w, v.y + h)
         else:
             vertex = None
         # return a particular vertex
@@ -46,20 +48,20 @@ class Box:
 
     def get_sides(self):
         return {
-            'left': Segment.Segment( # left side of box
-                self.get_vertex('bottom_left'),
-                self.get_vertex('upper_left')
+            'lf': Segment(  # left side of box
+                self.get_vertex('bo_lf'),
+                self.get_vertex('up_lf')
             ),
-            'right': Segment.Segment( # right side of box
-                self.get_vertex('bottom_right'),
-                self.get_vertex('upper_right')
+            'rt': Segment(  # right side of box
+                self.get_vertex('bo_rt'),
+                self.get_vertex('up_rt')
             ),
-            'bottom': Segment.Segment( # bottom side of box
-                self.get_vertex('bottom_left'),
-                self.get_vertex('bottom_right')
+            'bo': Segment(  # bottom side of box
+                self.get_vertex('bo_lf'),
+                self.get_vertex('bo_rt')
             ),
-            'upper': Segment.Segment( # upper side of box
-                self.get_vertex('upper_left'),
-                self.get_vertex('upper_right')
+            'up': Segment(  # upper side of box
+                self.get_vertex('up_lf'),
+                self.get_vertex('up_rt')
             ),
         }

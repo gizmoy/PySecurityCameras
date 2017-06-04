@@ -10,10 +10,13 @@ class Point:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def is_in_box(self, problem):
-        for box in problem.boxes:
-            v = box.vertex
-            if (v.x <= self.x <= v.x + box.width and
-                v.y <= self.y <= v.y + box.height):
+    def is_in_boxes(self, boxes):
+        for box in boxes:
+            if self.is_in_box(box):
                 return True
         return False
+
+    def is_in_box(self, box):
+        v = box.vertex
+        return (v.x <= self.x <= v.x + box.width and
+                v.y <= self.y <= v.y + box.height)

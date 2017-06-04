@@ -13,7 +13,7 @@ class Visualizator:
         ax = fig.add_subplot(121, aspect='equal')
         # draw boxes
         for box in problem.boxes:
-            vertex = box.get_vertex('bottom_left')
+            vertex = box.get_vertex('bo_lf')
             patch = patches.Rectangle((vertex.x, vertex.y), box.width, box.height, fill=False)
             ax.add_patch(patch)
             # draw check points

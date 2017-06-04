@@ -1,5 +1,8 @@
-from domain import point as Point, box as Box
-from visualization import visualizator as Visualizator
+from point import Point
+from box import Box
+from vision_ray import VisionRay
+from camera import Camera
+from visualization import visualizator
 
 
 class Problem:
@@ -21,12 +24,12 @@ class Problem:
             # retrieve vertex
             vertex_x = box['vertex']['x']
             vertex_y = box['vertex']['y']
-            vertex = Point.Point(vertex_x, vertex_y)
+            vertex = Point(vertex_x, vertex_y)
             # retrieve width & height
             width = box['width']
             height = box['height']
             # create & add boxes
-            new_box = Box.Box(vertex, width, height)
+            new_box = Box(vertex, width, height)
             new_box.generate_checkpoints(self.distance)
             self.boxes.append(new_box)
         # count number of all checkpoints
@@ -41,7 +44,7 @@ class Problem:
     def count_unobserved_checkpoints(self, state):
         # count down
         count = self.num_checkpoints
-        # check if point is observed by at least one camera and then subtract one from count
+        # check if point is observed by at least one camera and it is - subtract one from count
         for box in self.boxes:
             for point in box.checkpoints:
                 for camera in state.cameras:
@@ -49,13 +52,10 @@ class Problem:
                     if not point.is_observed and camera.can_reach(point):
                         point.is_observed = True
                         count -= 1
-        # visualize
-        # Visualizator.Visualizator.plot(self, state)
-        # stop observing for next counting
-        # self.stop_observing()
         return count
 
     def stop_observing(self):
+        # for all checkpoints set is_observed to false
         for box in self.boxes:
             for point in box.checkpoints:
                 point.is_observed = False

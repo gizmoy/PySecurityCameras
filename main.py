@@ -1,9 +1,8 @@
 import json
 from optparse import OptionParser
 
-from metaheuristics.simulated_annealing import simulated_annealing
-from visualization import visualizator
-from domain import problem
+from metaheuristics.simulated_annealing import simulated_annealing as SimulatedAnnealing
+from domain import problem as Problem
 
 
 if __name__ == '__main__':
@@ -23,6 +22,6 @@ if __name__ == '__main__':
         config = json.load(config_file)
 
     # define problem and perform algorithm
-    problem = problem.Problem(config)
-    algorithm = simulated_annealing.SimulatedAnnealing(config, problem)
+    problem = Problem.Problem(config)
+    algorithm = SimulatedAnnealing.SimulatedAnnealing(config, problem)
     algorithm.perform()
