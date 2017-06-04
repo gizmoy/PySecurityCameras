@@ -25,6 +25,11 @@
       "height": 0.15
     }
   ],
+  "cooling": {
+    "type": "lin",
+    "base": 0.99,
+    "tau": 10000
+  },
   "camera_range": 0.10,
   "max_cameras": 10,
   "max_iterations": 100,

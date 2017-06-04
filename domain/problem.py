@@ -2,7 +2,7 @@ from point import Point
 from box import Box
 from vision_ray import VisionRay
 from camera import Camera
-from visualization import visualizator
+from visualization.visualizator import Visualizator
 
 
 class Problem:
@@ -37,9 +37,17 @@ class Problem:
         for box in self.boxes:
             self.num_checkpoints += len(box.checkpoints)
 
-    def get_state_cost(self, state):
-        return self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
+    def get_state_loss(self, state, visualize=False, iteration=-1):
+        # compute state loss
+        loss = self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
                self.beta * len(state.cameras)**self.n_exp
+        # check whether visualization is enabled
+        if visualize:
+            Visualizator.plot(self, state, iteration, 'x')
+        # stop observing for next counting
+        self.stop_observing()
+        # return state loss
+        return loss
 
     def count_unobserved_checkpoints(self, state):
         # count down
