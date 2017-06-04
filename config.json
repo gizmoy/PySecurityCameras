@@ -26,18 +26,18 @@
     }
   ],
   "cooling": {
-    "type": "lin",
-    "base": 0.99,
-    "tau": 10000
+    "type": "exp",
+    "base": 0.995,
+    "tau": 50000
   },
   "camera_range": 0.10,
   "max_cameras": 10,
-  "max_iterations": 100,
+  "max_iterations": 10000,
   "distance": 0.02,
   "temperature": 0.03,
-  "sigma": 0.1,
+  "sigma": 0.02,
   "alpha": 1.0,
   "beta": 1.0,
   "h_exp": 1.0,
-  "n_exp": 3
+  "n_exp": 2.0
 }
