@@ -1,15 +1,14 @@
 import json
 from optparse import OptionParser
-
-from metaheuristics.simulated_annealing import simulated_annealing as SimulatedAnnealing
-from domain import problem as Problem
+from metaheuristics.simulated_annealing.simulated_annealing import SimulatedAnnealing
+from domain.problem import Problem
 
 
 if __name__ == '__main__':
     # create parser & parse args
     parser = OptionParser()
-    parser.add_option('-f', '--file', action='store', dest='filename', default='config.json',
-                      help='File with problem configuration')
+    parser.add_option('-F', '--file', action='store', dest='filename', default='config.json',
+                      help='File with a configuration')
     (options, args) = parser.parse_args()
 
     # check if name of file is a json one
@@ -22,6 +21,6 @@ if __name__ == '__main__':
         config = json.load(config_file)
 
     # define problem and perform algorithm
-    problem = Problem.Problem(config)
-    algorithm = SimulatedAnnealing.SimulatedAnnealing(config, problem)
+    problem = Problem(config)
+    algorithm = SimulatedAnnealing(config, problem)
     algorithm.perform()

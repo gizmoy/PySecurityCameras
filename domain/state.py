@@ -40,8 +40,8 @@ class State:
             cameras.append(new_camera)
         elif mutation_type == 'remove':
             # remove random camera
-            cam = random.choice(cameras)
-            cameras.remove(cam)
+            camera = random.choice(cameras)
+            cameras.remove(camera)
         else:
             # modify position of all cameras
             [c.modify_position() for c in cameras]

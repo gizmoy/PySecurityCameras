@@ -16,7 +16,7 @@ class VisionRay(Segment):
         y_lo = self.y_lo  # vision ray lower y coord
         y_hi = self.y_hi  # vision ray higher y coord
         # iterate over sides and depending on its type check whether it intersects with a vision ray
-        for name, side in box.get_sides().iteritems():
+        for name, side in box.sides.iteritems():
             s = side
             # separate into vertical and horizontal sides
             if name == 'lf' or name == 'rt':
