@@ -16,9 +16,9 @@ class Problem:
         self.beta = config['beta']
         self.h_exp = config['h_exp']
         self.n_exp = config['n_exp']
-        # init lists
+        # init properties
         self.boxes = []
-        self.log = []
+        self.num_checkpoints = 0
         # build boxes
         for box in config['boxes']:
             # retrieve vertex
@@ -32,10 +32,8 @@ class Problem:
             new_box = Box(vertex, width, height)
             new_box.generate_checkpoints(self.distance)
             self.boxes.append(new_box)
-        # count number of all checkpoints
-        self.num_checkpoints = 0
-        for box in self.boxes:
-            self.num_checkpoints += len(box.checkpoints)
+            # add number of generated checkpoints
+            self.num_checkpoints += len(new_box.checkpoints)
 
     def get_state_loss(self, state, visualize=False, iteration=-1):
         # compute state loss
