@@ -18,10 +18,10 @@ class Box:
             'up_rt': Point(vertex.x + width, vertex.y + height)  # upper right vertex
         }
         self.sides = {
-            'lf': Segment(self.vertices['bo_lf'], self.vertices['up_lf']),  # left side of box
-            'rt': Segment(self.vertices['bo_rt'], self.vertices['up_rt']),  # right side of box
-            'bo': Segment(self.vertices['bo_lf'], self.vertices['bo_rt']),  # bottom side of box
-            'up': Segment(self.vertices['up_lf'], self.vertices['up_rt']),  # upper side of box
+            'lf': Segment(self.vertices['bo_lf'], self.vertices['up_lf']),  # left side of a box
+            'rt': Segment(self.vertices['bo_rt'], self.vertices['up_rt']),  # right side of a box
+            'bo': Segment(self.vertices['bo_lf'], self.vertices['bo_rt']),  # bottom side of a box
+            'up': Segment(self.vertices['up_lf'], self.vertices['up_rt']),  # upper side of a box
         }
 
     def generate_checkpoints(self, distance):

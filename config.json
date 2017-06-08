@@ -1,27 +1,27 @@
 {
   "boxes": [
-    {
-      "vertex": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "width": 1.0,
-      "height": 1.0
-    }
+   {
+        "vertex": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "width": 1.0,
+        "height": 1.0
+      }
   ],
   "cooling": {
     "type": "lin",
-    "base": 0.00001,
-    "tau": 20
+    "base": 0.001,
+    "tau": 20.0
   },
-  "camera_range": 0.15,
-  "max_cameras": 9,
+  "camera_range": 0.25,
+  "max_cameras": 20,
   "max_iterations": 20000,
   "distance": 0.02,
   "temperature": 0.03,
-  "sigma": 0.2,
+  "sigma": 0.1,
   "alpha": 1.0,
-  "beta": 3.0,
+  "beta": 150.0,
   "h_exp": 1.0,
-  "n_exp": 2.0
+  "n_exp": 1.0
 }

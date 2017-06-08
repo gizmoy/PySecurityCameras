@@ -31,16 +31,17 @@ class SimulatedAnnealing:
         i = 0
         n_changes = 0
         # perform simulated
-        x_cost = self.problem.get_state_loss(x, visualize=(i % 1000 == 0), iteration=i)
+        x_cost = self.problem.get_state_cost(x, visualize=True, iteration=0)
         while i < self.max_iterations:
-            if i % 100 == 0:
-                print 'iteration (%d/%d) and %d changes' % (i, self.max_iterations, n_changes)
+            # print changes
+            if i % 100 == 0 and i != 0:
+                print 'iteration (%d/%d) with %d changes and temperature %f & threshold %f' % (i, self.max_iterations, n_changes, t, threshold)
                 n_changes = 0
             # generate y as neighbour of x and count their qualities
             y = x.generate_neighbour()
-            y_cost = self.problem.get_state_loss(y, visualize=(i % 1000 == 0), iteration=i)
+            y_cost = self.problem.get_state_cost(y)
             # compute threshold and update x if y's cost < x's cost (minimisation) or random number < threshold
-            threshold = math.exp(-math.fabs(y_cost - x_cost) / t) if t > 0 else 0
+            threshold = math.exp(-math.fabs((y_cost - x_cost)) / t) if t > 0 else 0
             if x_cost > y_cost or random.random() < threshold:
                 n_changes += 1
                 x, x_cost = y, y_cost
@@ -49,5 +50,5 @@ class SimulatedAnnealing:
             i += 1
         # save outcome
         self.outcome = x
-        self.problem.get_state_loss(x, visualize=True, iteration=-1)
+        self.problem.get_state_loss(x, visualize=True, iteration=self.max_iterations)
 

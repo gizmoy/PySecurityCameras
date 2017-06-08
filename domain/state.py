@@ -43,7 +43,8 @@ class State:
             camera = random.choice(cameras)
             cameras.remove(camera)
         else:
-            # modify position of all cameras
-            [c.modify_position() for c in cameras]
+            # modify position of random camera
+            camera = random.choice(cameras)
+            camera.modify_position()
         # return new state
         return State(self.problem, cameras)

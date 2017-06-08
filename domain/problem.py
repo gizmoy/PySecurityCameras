@@ -34,18 +34,19 @@ class Problem:
             self.boxes.append(new_box)
             # add number of generated checkpoints
             self.num_checkpoints += len(new_box.checkpoints)
+        print 'Num of checkpoints: %d' % self.num_checkpoints
 
-    def get_state_loss(self, state, visualize=False, iteration=-1):
-        # compute state loss
-        loss = self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
+    def get_state_cost(self, state, visualize=False, iteration=-1):
+        # compute state cost
+        cost = self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
                self.beta * len(state.cameras)**self.n_exp
         # check whether visualization is enabled
         if visualize:
             Visualizator.plot(self, state, iteration, 'x')
         # stop observing for next counting
         self.stop_observing()
-        # return state loss
-        return loss
+        # return state cost
+        return cost
 
     def count_unobserved_checkpoints(self, state):
         # count down
