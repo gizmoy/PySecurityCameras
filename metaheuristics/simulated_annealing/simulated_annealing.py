@@ -9,7 +9,6 @@ from metaheuristics.simulated_annealing.log_cooling import LogCooler
 class SimulatedAnnealing:
     def __init__(self, config, problem):
         self.problem = problem
-        self.temperature = config['temperature']
         self.max_iterations = config['max_iterations']
         self.initial_state = State(self.problem)
         self.outcome = None
@@ -32,10 +31,10 @@ class SimulatedAnnealing:
         i = 0
         n_changes = 0
         # perform simulated
-        x_cost = self.problem.get_state_cost(x, visualize=True, iteration=0)
+        x_cost = self.problem.get_state_cost(x, visualize=self.problem.verbose, label='init')
         while i < self.max_iterations:
             # print changes
-            if i % 100 == 0 and i != 0:
+            if self.problem.verbose == True and i % 100 == 0 and i != 0:
                 print 'iteration (%d/%d) with %d changes and temperature %f & threshold %f' % (i, self.max_iterations, n_changes, t, threshold)
                 n_changes = 0
             # generate y as neighbour of x and count their qualities
@@ -52,5 +51,5 @@ class SimulatedAnnealing:
         # save outcome and cost
         self.outcome = x
         self.outcome_cost = x_cost
-        self.problem.get_state_cost(x, visualize=True, iteration=self.max_iterations)
+        self.problem.get_state_cost(x, visualize=self.problem.verbose, label='outcome')
 

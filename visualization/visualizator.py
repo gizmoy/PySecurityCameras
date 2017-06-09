@@ -1,4 +1,3 @@
-import time
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
@@ -8,7 +7,7 @@ class Visualizator:
         pass
 
     @staticmethod
-    def plot(problem, state, iteration=None, label=None):
+    def plot(problem, state, label):
         fig = plt.figure(figsize=(40, 40))
         ax = fig.add_subplot(121, aspect='equal')
         # draw boxes
@@ -30,12 +29,10 @@ class Visualizator:
             circle = plt.Circle((camera.pos.x, camera.pos.y), problem.camera_range, color='b', fill=False)
             ax.add_artist(circle)
         # save figure
-        fig.savefig('state_of_' + str(iteration) + '_' + label + '.png', dpi=180, bbox_inches='tight')
+        fig.savefig(label + '.png', dpi=180, bbox_inches='tight')
 
     @staticmethod
-    def plot_values_results(values_results, param_name):
-        # for readability
-        vr = values_results
+    def plot_values_results(values_results, param, tested):
         # coords arrays
         x_points = []
         y_points = []
@@ -44,17 +41,19 @@ class Visualizator:
         y_std_devs = []
         # plot figure
         fig = plt.figure(figsize=(20, 20))
-        for value in values_results:
-            n_results = len(vr[value])
-            mean = 0 if n_results == 0 else sum(vr[value]) / n_results
-            diff = [(result - mean)**2 for result in vr[value]]
+        # for every key in values results dict
+        for value in sorted(values_results):
+            # compute mean and standard deviation
+            n_results = len(values_results[value])
+            mean = 0 if n_results == 0 else sum(values_results[value]) / n_results
+            diff = [(result - mean)**2 for result in values_results[value]]
             std_dev = 0 if n_results == 0 else (sum(diff) / n_results)**.5
             # save computed values
             x.append(value)
             y_means.append(mean)
             y_std_devs.append(std_dev)
-            for result in vr[value]:
-                # save point coords
+            # save point coords
+            for result in values_results[value]:
                 x_points.append(value)
                 y_points.append(result)
                 (_, caps, _) = plt.errorbar(x, y_means, xerr=0, yerr=y_std_devs)
@@ -65,5 +64,5 @@ class Visualizator:
         # draw points
         plt.scatter(x_points, y_points, s=20)
         # save figure
-        fig.savefig('test_on_' + param_name + '.png', dpi=90)  #, bbox_inches='tight')
+        fig.savefig('test_of_' + tested + '_on_' + param + '.png', dpi=90)  #, bbox_inches='tight')
 

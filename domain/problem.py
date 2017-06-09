@@ -1,7 +1,5 @@
 from point import Point
 from box import Box
-from vision_ray import VisionRay
-from camera import Camera
 from visualization.visualizator import Visualizator
 
 
@@ -16,6 +14,7 @@ class Problem:
         self.beta = config['beta']
         self.h_exp = config['h_exp']
         self.n_exp = config['n_exp']
+        self.verbose = config['verbose']
         # init properties
         self.boxes = []
         self.num_checkpoints = 0
@@ -35,13 +34,13 @@ class Problem:
             # add number of generated checkpoints
             self.num_checkpoints += len(new_box.checkpoints)
 
-    def get_state_cost(self, state, visualize=False, iteration=-1):
+    def get_state_cost(self, state, visualize=False, label='nolabel'):
         # compute state cost
         cost = self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
                self.beta * len(state.cameras)**self.n_exp
         # check whether visualization is enabled
         if visualize:
-            Visualizator.plot(self, state, iteration, 'x')
+            Visualizator.plot(self, state, label)
         # stop observing for next counting
         self.stop_observing()
         # return state cost

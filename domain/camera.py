@@ -1,6 +1,3 @@
-import random
-import math
-import operator
 import numpy as np
 from point import Point
 from vision_ray import VisionRay

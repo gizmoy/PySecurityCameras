@@ -24,17 +24,22 @@
           "tau": 20.0
       },
       "camera_range": 0.15,
-      "max_cameras": 5,
-      "max_iterations": 100,
-      "distance": 0.3,
+      "max_cameras": 10,
+      "max_iterations": 1000,
+      "distance": 0.02,
       "sigma": 0.1,
       "alpha": 1.0,
-      "beta": 1.0,
+      "beta": 100.0,
       "h_exp": 1.0,
       "n_exp": 1.0,
       "verbose": false
   },
-  "values": [2, 3, 4, 5, 6],
-  "n_tries": 10,
-  "param_name": "alpha"
+  "interval": {
+    "beg": -1,
+    "end": -0.5
+  },
+  "num_values": 5,
+  "num_tries": 10,
+  "param": "camera_range",
+  "tested": "cost"
 }

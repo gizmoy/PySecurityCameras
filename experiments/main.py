@@ -1,4 +1,5 @@
 import json
+import numpy as np
 from optparse import OptionParser
 from metaheuristics.simulated_annealing.simulated_annealing import SimulatedAnnealing
 from domain.problem import Problem
@@ -25,26 +26,32 @@ if __name__ == '__main__':
     config = experiment_config['problem']
 
     # read experiment configuration
-    values = experiment_config['values']
-    n_tries = experiment_config['n_tries']
-    param_name = experiment_config['param_name']
+    interval_beg = experiment_config['interval']['beg']
+    interval_end = experiment_config['interval']['end']
+    num_values = experiment_config['num_values']
+    num_tries = experiment_config['num_tries']
+    param = experiment_config['param']
+    tested = experiment_config['tested']
 
     # dictionary results of values: value(double) -> results(doubles[])
     values_results = {}
 
-    for index, value in enumerate(values):
-        # change config value of examined parameter
-        config[param_name] = value
-        # init array of results for value
+    for i in range(num_values):
+        # sample value from the log space
+        value = 10 ** np.random.uniform(interval_beg, interval_end)
+        # change config value of examined parameter and init array of result for value
+        config[param] = value
         values_results[value] = []
         # verbose
-        print 'Checking for %s == %f (value number %d out of %d)' % (param_name, value, index, len(values))
-        for _ in range(n_tries):
+        print 'Checking for %s == %f (value number %d out of %d)' % (param, value, i+1, num_values)
+        # repeat algorithm n_tries times
+        for j in range(num_tries):
             # define problem and perform algorithm
             problem = Problem(config)
             algorithm = SimulatedAnnealing(config, problem)
             algorithm.perform()
-            # saving outcome state cost
-            values_results[value].append(algorithm.outcome_cost)
-    # plot results
-    Visualizator.plot_values_results(values_results, param_name)
+            # saving outcome state cost or its len of cameras
+            result = algorithm.outcome_cost if tested == 'cost' else len(algorithm.outcome.cameras)
+            values_results[value].append(result)
+    # plot values results
+    Visualizator.plot_values_results(values_results, param, tested)

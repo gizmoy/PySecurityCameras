@@ -1,4 +1,3 @@
-import copy
 import math
 from point import Point
 from check_point import Checkpoint
