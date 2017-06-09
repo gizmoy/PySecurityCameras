@@ -13,6 +13,7 @@ class SimulatedAnnealing:
         self.max_iterations = config['max_iterations']
         self.initial_state = State(self.problem)
         self.outcome = None
+        self.outcome_cost = None
         # cooling
         cooling_type = config['cooling']['type']
         if cooling_type == 'log':
@@ -48,7 +49,8 @@ class SimulatedAnnealing:
             # update temperature and iteration counter
             t = self.cooler.get_temperature()
             i += 1
-        # save outcome
+        # save outcome and cost
         self.outcome = x
-        self.problem.get_state_loss(x, visualize=True, iteration=self.max_iterations)
+        self.outcome_cost = x_cost
+        self.problem.get_state_cost(x, visualize=True, iteration=self.max_iterations)
 

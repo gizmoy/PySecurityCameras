@@ -34,7 +34,6 @@ class Problem:
             self.boxes.append(new_box)
             # add number of generated checkpoints
             self.num_checkpoints += len(new_box.checkpoints)
-        print 'Num of checkpoints: %d' % self.num_checkpoints
 
     def get_state_cost(self, state, visualize=False, iteration=-1):
         # compute state cost

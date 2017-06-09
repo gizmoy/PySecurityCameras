@@ -7,7 +7,7 @@ from domain.problem import Problem
 if __name__ == '__main__':
     # create parser & parse args
     parser = OptionParser()
-    parser.add_option('-F', '--file', action='store', dest='filename', default='config.json',
+    parser.add_option('-F', '--file', action='store', dest='filename', default='experiment_config.json',
                       help='File with a configuration')
     (options, args) = parser.parse_args()
 

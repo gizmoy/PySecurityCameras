@@ -1,0 +1,40 @@
+{
+  "problem": {
+      "boxes": [
+          {
+              "vertex": {
+                  "x": 0.0,
+                  "y": 0.0
+              },
+              "width": 0.3,
+              "height": 1.0
+          },
+          {
+               "vertex": {
+                   "x": 0.3,
+                   "y": 0.3
+               },
+               "width": 0.7,
+               "height": 0.6
+          }
+      ],
+      "cooling": {
+          "type": "lin",
+          "base": 0.001,
+          "tau": 20.0
+      },
+      "camera_range": 0.15,
+      "max_cameras": 5,
+      "max_iterations": 100,
+      "distance": 0.3,
+      "sigma": 0.1,
+      "alpha": 1.0,
+      "beta": 1.0,
+      "h_exp": 1.0,
+      "n_exp": 1.0,
+      "verbose": false
+  },
+  "values": [2, 3, 4, 5, 6],
+  "n_tries": 10,
+  "param_name": "alpha"
+}
