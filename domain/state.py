@@ -7,6 +7,7 @@ class State:
     def __init__(self, problem, cameras=None):
         self.problem = problem
         self.cameras = cameras if cameras else self.generate_cameras()
+        self.num_unobserved = None
 
     def generate_cameras(self):
         # generated cameras

@@ -7,7 +7,7 @@ class Visualizator:
         pass
 
     @staticmethod
-    def plot(problem, state, label):
+    def plot_state(problem, state, label):
         fig = plt.figure(figsize=(40, 40))
         ax = fig.add_subplot(121, aspect='equal')
         # draw boxes
@@ -40,7 +40,7 @@ class Visualizator:
         y_means = []
         y_std_devs = []
         # plot figure
-        fig = plt.figure(figsize=(20, 20))
+        fig = plt.figure(figsize=(10, 10))
         # for every key in values results dict
         for value in sorted(values_results):
             # compute mean and standard deviation
@@ -56,13 +56,18 @@ class Visualizator:
             for result in values_results[value]:
                 x_points.append(value)
                 y_points.append(result)
-                (_, caps, _) = plt.errorbar(x, y_means, xerr=0, yerr=y_std_devs)
-                # set color and width of caps
-                for cap in caps:
-                    cap.set_color('red')
-                    cap.set_markeredgewidth(5)
-        # draw points
-        plt.scatter(x_points, y_points, s=20)
+            # draw points
+            plt.scatter(x_points, y_points, s=[20]*len(x_points), c=['orange']*len(x_points))
+            plt.errorbar(x, y_means, xerr=0, yerr=y_std_devs, marker="o", color='red', ecolor='blue', markersize='3', capsize=10,
+                     elinewidth=1)
         # save figure
-        fig.savefig('test_of_' + tested + '_on_' + param + '.png', dpi=90)  #, bbox_inches='tight')
+        fig.savefig('test_of_' + param + '_on_' + tested + '.png', dpi=90)  #, bbox_inches='tight')
 
+    @staticmethod
+    def plot_costs(costs):
+        # plot figure
+        fig = plt.figure(figsize=(10, 10))
+        # draw line
+        plt.plot(range(len(costs)), costs)
+        # save figure
+        fig.savefig('costs.png', dpi=90)

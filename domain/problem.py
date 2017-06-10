@@ -34,13 +34,18 @@ class Problem:
             # add number of generated checkpoints
             self.num_checkpoints += len(new_box.checkpoints)
 
-    def get_state_cost(self, state, visualize=False, label='nolabel'):
+    def get_state_cost(self, state, visualize=False, label='none'):
+        # get number of unobserved points and number of cameras
+        h = self.count_unobserved_checkpoints(state)
+        n = len(state.cameras)
+        # save number of unobserved points
+        state.num_unobserved = h
         # compute state cost
-        cost = self.alpha * self.count_unobserved_checkpoints(state)**self.h_exp + \
-               self.beta * len(state.cameras)**self.n_exp
+        cost = self.alpha * h**self.h_exp + \
+               self.beta  * n**self.n_exp
         # check whether visualization is enabled
         if visualize:
-            Visualizator.plot(self, state, label)
+            Visualizator.plot_state(self, state, label)
         # stop observing for next counting
         self.stop_observing()
         # return state cost

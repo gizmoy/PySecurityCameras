@@ -33,7 +33,7 @@ if __name__ == '__main__':
     param = experiment_config['param']
     tested = experiment_config['tested']
 
-    # dictionary results of values: value(double) -> results(doubles[])
+    # dictionary results of values: value(double) -> results(double[])
     values_results = {}
 
     for i in range(num_values):
@@ -44,14 +44,25 @@ if __name__ == '__main__':
         values_results[value] = []
         # verbose
         print 'Checking for %s == %f (value number %d out of %d)' % (param, value, i+1, num_values)
-        # repeat algorithm n_tries times
+        # repeat algorithm n_tries times for one value
         for j in range(num_tries):
+            # verbose
+            print 'Try number %d out of %d' % (j+1, num_tries)
             # define problem and perform algorithm
             problem = Problem(config)
             algorithm = SimulatedAnnealing(config, problem)
             algorithm.perform()
-            # saving outcome state cost or its len of cameras
-            result = algorithm.outcome_cost if tested == 'cost' else len(algorithm.outcome.cameras)
+            # saving one from: outcome state cost || len of cameras || number of unobserved points || execution time
+            if tested == 'cost':
+                result = algorithm.outcome_cost
+            elif tested == 'num_cameras':
+                result = len(algorithm.outcome.cameras)
+            elif tested == 'num_unobserved':
+                result = algorithm.outcome.num_unobserved
+            elif tested == 'exec_time':
+                result = algorithm.exec_time
+            else:
+                pass
             values_results[value].append(result)
     # plot values results
     Visualizator.plot_values_results(values_results, param, tested)
