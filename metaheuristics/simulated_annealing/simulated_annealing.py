@@ -25,7 +25,7 @@ class SimulatedAnnealing:
         elif cooling_type == 'exp':
             self.cooler = ExpCooler(config)
         else:
-            pass
+            raise ValueError('Not recognized cooler type - "%s"' % (cooling_type))
 
     def perform(self):
         # get initial state and set initial values
@@ -60,5 +60,7 @@ class SimulatedAnnealing:
         self.outcome, self.outcome_cost = x, x_cost
         self.problem.get_state_cost(x, visualize=self.problem.verbose, label='outcome')
         self.exec_time = time.time() - start
-        Visualizator.plot_costs(costs)
+        # plot costs if verbose mode enabled
+        if self.problem.verbose == True:
+            Visualizator.plot_costs(costs)
 

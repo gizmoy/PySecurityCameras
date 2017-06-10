@@ -56,12 +56,12 @@ class Visualizator:
             for result in values_results[value]:
                 x_points.append(value)
                 y_points.append(result)
-            # draw points
+            # draw points, mean and std deviation
             plt.scatter(x_points, y_points, s=[20]*len(x_points), c=['orange']*len(x_points))
             plt.errorbar(x, y_means, xerr=0, yerr=y_std_devs, marker="o", color='red', ecolor='blue', markersize='3', capsize=10,
                      elinewidth=1)
         # save figure
-        fig.savefig('test_of_' + param + '_on_' + tested + '.png', dpi=90)  #, bbox_inches='tight')
+        fig.savefig(param + '_test_on_' + tested + '.png', dpi=90)
 
     @staticmethod
     def plot_costs(costs):

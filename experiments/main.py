@@ -57,12 +57,12 @@ if __name__ == '__main__':
                 result = algorithm.outcome_cost
             elif tested == 'num_cameras':
                 result = len(algorithm.outcome.cameras)
-            elif tested == 'num_unobserved':
-                result = algorithm.outcome.num_unobserved
+            elif tested == 'num_unobserved_fraction':
+                result = algorithm.outcome.num_unobserved / float(problem.num_checkpoints)
             elif tested == 'exec_time':
                 result = algorithm.exec_time
             else:
-                pass
+                raise ValueError('Not recognized tested value name - "%s"' % (tested))
             values_results[value].append(result)
     # plot values results
     Visualizator.plot_values_results(values_results, param, tested)

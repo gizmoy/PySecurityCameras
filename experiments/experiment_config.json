@@ -33,5 +33,5 @@
   "num_values": 10,
   "num_tries": 10,
   "param": "beta",
-  "tested": "cost"
+  "tested": "num_unobserved"
 }
