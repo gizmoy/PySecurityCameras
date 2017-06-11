@@ -5,80 +5,145 @@
             "x": 0.0,
             "y": 0.0
         },
-        "width": 0.25,
-        "height": 1
+        "width": 0.3,
+        "height": 0.2
     },
     {
         "vertex": {
-            "x": 0.25,
-            "y": 0.75
+            "x": 0.1,
+            "y": 0.2
         },
-        "width": 0.125,
-        "height": 0.25
+        "width": 0.1,
+        "height": 0.02
     },
     {
         "vertex": {
-            "x": 0.25,
-            "y": 0.375
-        },
-        "width": 0.125,
-        "height": 0.25
-    },
-    {
-        "vertex": {
-            "x": 0.25,
+            "x": 0.32,
             "y": 0.0
         },
-        "width": 0.125,
-        "height": 0.25
+        "width": 0.4,
+        "height": 0.48
     },
     {
         "vertex": {
-            "x": 0.375,
+            "x": 0.72,
+            "y": 0.05
+        },
+        "width": 0.02,
+        "height": 0.15
+    },
+    {
+        "vertex": {
+            "x": 0.74,
             "y": 0.0
         },
-        "width": 0.25,
-        "height": 1.0
+        "width": 0.26,
+        "height": 0.48
     },
     {
         "vertex": {
-            "x": 0.625,
-            "y": 0.75
+            "x": 0.0,
+            "y": 0.22
         },
-        "width": 0.125,
-        "height": 0.25
+        "width": 0.3,
+        "height": 0.26
     },
     {
         "vertex": {
-            "x": 0.625,
-            "y": 0.375
+            "x": 0.04,
+            "y": 0.48
         },
-        "width": 0.125,
-        "height": 0.25
+        "width": 0.1,
+        "height": 0.02
     },
     {
         "vertex": {
-            "x": 0.625,
-            "y": 0.0
+            "x": 0.2,
+            "y": 0.48
         },
-        "width": 0.125,
-        "height": 0.25
+        "width": 0.1,
+        "height": 0.02
     },
     {
         "vertex": {
-            "x": 0.75,
-            "y": 0.0
+            "x": 0.3,
+            "y": 0.3
         },
-        "width": 0.25,
-        "height": 1.0
+        "width": 0.02,
+        "height": 0.1
+    },
+    {
+        "vertex": {
+            "x": 0.0,
+            "y": 0.5
+        },
+        "width": 0.18,
+        "height": 0.38
+    },
+    {
+        "vertex": {
+            "x": 0.18,
+            "y": 0.74
+        },
+        "width": 0.02,
+        "height": 0.1
+    },
+    {
+        "vertex": {
+            "x": 0.2,
+            "y": 0.5
+        },
+        "width": 0.1,
+        "height": 0.38
+    },
+    {
+        "vertex": {
+            "x": 0.3,
+            "y": 0.6
+        },
+        "width": 0.02,
+        "height": 0.1
+    },
+    {
+        "vertex": {
+            "x": 0.32,
+            "y": 0.5
+        },
+        "width": 0.68,
+        "height": 0.5
+    },
+    {
+        "vertex": {
+            "x": 0.0,
+            "y": 0.9
+        },
+        "width": 0.3,
+        "height": 0.1
+    },
+    {
+        "vertex": {
+            "x": 0.2,
+            "y": 0.88
+        },
+        "width": 0.1,
+        "height": 0.02
+    },
+    {
+        "vertex": {
+            "x": 0.3,
+            "y": 0.9
+        },
+        "width": 0.02,
+        "height": 0.1
     }
+
   ],
   "cooling": {
     "type": "lin",
     "base": 0.001,
     "tau": 20.0
   },
-  "camera_range": 0.25,
+  "camera_range": 0.15,
   "max_cameras": 20,
   "max_iterations": 25000,
   "distance": 0.02,

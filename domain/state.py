@@ -13,7 +13,7 @@ class State:
         # generated cameras
         cameras = []
         # random init number of cameras
-        num_cameras = random.randint(1, self.problem.max_cameras)
+        num_cameras = random.randint(1, int(self.problem.max_cameras))
         # select one box num_cameras times
         picked_boxes = [random.choice(self.problem.boxes) for _ in range(num_cameras)]
         for box in picked_boxes:

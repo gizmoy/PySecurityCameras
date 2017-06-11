@@ -40,7 +40,7 @@ if __name__ == '__main__':
         # sample value from the log space
         value = 10 ** np.random.uniform(interval_beg, interval_end)
         # change config value of examined parameter and init array of result for value
-        config[param] = value
+        config['cooling'][param] = value
         values_results[value] = []
         # verbose
         print 'Checking for %s == %f (value number %d out of %d)' % (param, value, i+1, num_values)
@@ -57,12 +57,12 @@ if __name__ == '__main__':
                 result = algorithm.outcome_cost
             elif tested == 'num_cameras':
                 result = len(algorithm.outcome.cameras)
-            elif tested == 'num_unobserved_fraction':
+            elif tested == 'unobserved_fraction':
                 result = algorithm.outcome.num_unobserved / float(problem.num_checkpoints)
             elif tested == 'exec_time':
                 result = algorithm.exec_time
             else:
-                raise ValueError('Not recognized tested value name - "%s"' % (tested))
+                raise ValueError('Not recognized tested value name "%s"' % (tested))
             values_results[value].append(result)
     # plot values results
     Visualizator.plot_values_results(values_results, param, tested)

@@ -6,7 +6,7 @@
                   "x": 0.0,
                   "y": 0.0
               },
-              "width": 1.0,
+              "width": 0.3,
               "height": 1.0
           }
       ],
@@ -21,17 +21,17 @@
       "distance": 0.02,
       "sigma": 0.1,
       "alpha": 1.0,
-      "beta": 5.0,
+      "beta": 150.0,
       "h_exp": 1.0,
       "n_exp": 1.0,
       "verbose": false
   },
   "interval": {
-    "beg": 1,
-    "end": 2.3
+    "beg": -1.0,
+    "end": 1.0
   },
   "num_values": 10,
   "num_tries": 10,
-  "param": "beta",
-  "tested": "num_unobserved"
+  "param": "base",
+  "tested": "unobserved_fraction"
 }
