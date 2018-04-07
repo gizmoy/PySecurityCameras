@@ -1,10 +1,12 @@
 # PySecurityCameras
 
-### Introduction
+## Introduction
 
 PySecurityCameras is an application which finds optimal arrangement of cameras located in collection od rooms. Cameras and rooms are difined as shapes on 2D plane - camera being a circle and room being a rectangle. Search of the best coordinates is performed using Simulated Annealing algorithm.
 
-### Configuration
+## Configuration
+
+### Configuration file
 
 Process of optimization can be configured through the _./config.json_ file which has following structure:
 
@@ -80,7 +82,22 @@ where:
 
 ### Cooling
 
-To do...
+Type of cooling is configured through property "type" of object "cooling" in _./config.json_ file. There are three types of cooling (where i is a number of iteration):
+
+1. Logarithmic - set "type" to "log"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.codecogs.com/eqnedit.php?latex=T_i&space;=&space;\frac{\tau}{1&plus;log(1&plus;i)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T_i&space;=&space;\frac{\tau}{1&plus;log(1&plus;i)}" title="T_i = \frac{\tau}{1+log(1+i)}" /></a>
+
+2. Linear - set "type" to "lin",
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.codecogs.com/eqnedit.php?latex=T_i&space;=&space;\tau&space;-&space;bi" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T_i&space;=&space;\tau&space;-&space;bi" title="T_i = \tau - bi" /></a>
+
+
+3. Exponential - set "type" to "exp"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.codecogs.com/eqnedit.php?latex=T_i&space;=&space;\tau&space;-&space;b^i" target="_blank"><img src="https://latex.codecogs.com/gif.latex?T_i&space;=&space;\tau&space;-&space;b^i" title="T_i = \tau - b^i" /></a>
+
+## Execution
 
 ### Input
 
@@ -106,6 +123,68 @@ On the left are final arrengments of cameras and on the right are values of loss
 
 ![results](https://i.imgur.com/NBmmBjR.png)
 
-### Hyperparameters tuning 
+## Hyperparameters fine-tuning 
 
-To do...
+### Configuration
+
+Hyperparameters can be found using experiments which can be performed by running the _./experiments/main.py_ file. In configuaraion file _./experiments/experiment_config.json_ user can select examined parameter as well as intervals from which values are sampled. Experiment configuration file has a following structure:
+
+<pre>
+{
+  "problem": {
+    /*
+      object from _./config.json_ file
+    */
+  },
+  "interval": {
+    "beg": 0.5,
+    "end": 1
+  },
+  "num_values": 10,
+  "num_tries": 10,
+  "param": "beta",
+  "tested": "cost"
+}
+</pre>
+
+where:
+
+* **"problem"** -  object from _./config.json_ file.
+
+* **"interval"** - numerical interval from which values of examined parameter are sampled.
+    * **"beg"** - beginnig of the interval.
+    * **"end"** - end of the interval.
+
+* **"num_values"** -  number of samples.
+
+* **"num_tries"** -  number of tries on one sample.
+
+* **"param"** - name of parameter which is a independent variable.
+
+* **"tested"** -  name of parameter which is a dependent variable with 5 possible values:
+    * **"cost"** - value of cost function.
+    * **"num_cameras"** - value of cameras' number.
+    * **"unobserved_fraction"** - fraction of unobserved checkpoints to observed ones.
+    * **"exec_time"** - execution time.
+
+## Execution
+
+### Input
+
+* _./experiments/experiment_config.json_
+
+### Run
+
+<pre>
+cd PySecurityCameras/experiments
+python main.py
+</pre>
+
+
+### Output
+
+In a result a _./experiments/{param}\_test\_on\_{tested}.png_ is generated.
+
+### Examples of experiments results
+
+![example of experiment](https://i.imgur.com/kC7MJ3T.png)
